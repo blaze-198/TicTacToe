@@ -1,0 +1,10 @@
+runtime:
+  js_entrypoint: "index.js"
+  http_key: "tictactoe_server_key"
+match:
+  input_queue_size: 128
+  call_queue_size: 128
+  deferred_queue_size: 128
+  join_attempt_queue_size: 128
+  max_empty_sec: 120
+  label_update_interval_ms: 500

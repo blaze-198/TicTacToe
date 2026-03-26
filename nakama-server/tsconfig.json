@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "typeRoots": ["./node_modules"],
+    "lib": ["es2015"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

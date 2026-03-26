@@ -1,0 +1,21 @@
+# Stage 1: Build the TypeScript server module
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY nakama-server/package*.json ./
+RUN npm install
+COPY nakama-server/ ./
+RUN npm run build
+
+# Stage 2: Run Nakama with our compiled module
+FROM heroiclabs/nakama:3.24.2
+
+# Copy the built JS module and config
+COPY --from=builder /app/build/index.js /nakama/data/modules/index.js
+COPY local.yml /nakama/data/local.yml
+COPY nakama-entrypoint.sh /nakama/nakama-entrypoint.sh
+
+USER root
+RUN chmod +x /nakama/nakama-entrypoint.sh
+USER nakama
+
+ENTRYPOINT ["/nakama/nakama-entrypoint.sh"]
